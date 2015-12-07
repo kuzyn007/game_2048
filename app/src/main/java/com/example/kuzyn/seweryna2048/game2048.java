@@ -1,7 +1,10 @@
 package com.example.kuzyn.seweryna2048;
 
+import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Vector;
 
@@ -215,18 +218,18 @@ public class game2048 {
         return Integer.toString(plansza[posX][posY]);
     }
 
-    public void makeMoveForArrow(String kierunek, Vector<TextView> komorki) {
+    public void makeMoveForArrow(String kierunek, Vector<ImageView> komorki,HashMap<String, Drawable> mapImages) {
         funCalc(kierunek);
         AddNewNumber();
-        updateText(komorki);
+        updateText(komorki,mapImages);
     }
 
-    private void updateText(Vector<TextView> komorki) {
+    private void updateText(Vector<ImageView> komorki,HashMap<String, Drawable> mapImages) {
         int lok=0;
         for(int i=0;i<rozmiarPlanszy;i++) {
             for(int j=0;j<rozmiarPlanszy;j++) {
                 //komorki.get(lok).setText("10");
-                komorki.get(lok).setText(getFromTable(i, j));
+                komorki.get(lok).setImageDrawable(mapImages.get(getFromTable(i, j)));
                 lok++;
             }
         }
